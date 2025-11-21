@@ -46,9 +46,9 @@ These dependencies are crucial for setting up the development environment and co
 
 ### Build- and run-time
 
-These libraries are essential both for building the project and for its operation at runtime, handling common tasks like memory management and data parsing:
+These libraries are essential both for building the project and for its operation at runtime:
 
-*   **Boost**: A collection of high-quality, peer-reviewed C++ libraries. This framework uses Boost for various utilities, including smart pointers (`boost::shared_ptr`).
+*   **Boost**: A collection of high-quality, peer-reviewed C++ libraries. This framework uses Boost for parsing XML files (with the help of `boost::property_tree`).
 
 ## Tutorials
 
