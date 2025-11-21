@@ -1,5 +1,4 @@
-#ifndef CORE_APPLICATION_H
-#define CORE_APPLICATION_H
+#pragma once
 
 #include "Build.h"
 #include "Service.h"
@@ -22,5 +21,3 @@ namespace Core
 	typedef std::shared_ptr<Application> ApplicationPtr;
 
 }
-
-#endif

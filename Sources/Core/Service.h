@@ -1,5 +1,4 @@
-#ifndef CORE_SERVICE_H
-#define CORE_SERVICE_H
+#pragma once
 
 #include "Build.h"
 #include <memory>
@@ -21,5 +20,3 @@ namespace Core
 	typedef std::shared_ptr<Service> ServicePtr;
 
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef CORE_PLUGIN_H
-#define CORE_PLUGIN_H
+#pragma once
 
 #include "Build.h"
 #include "Library.h"
@@ -132,5 +131,3 @@ namespace Core
 	typedef std::shared_ptr<Plugin> PluginPtr;
 
 }
-
-#endif

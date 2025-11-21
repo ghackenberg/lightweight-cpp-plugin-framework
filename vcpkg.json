@@ -5,8 +5,6 @@
   "homepage": "https://github.com/ghackenberg/lightweight-cpp-plugin-framework",
   "license": "MIT",
   "dependencies": [
-    "boost-filesystem",
-    "boost-property-tree",
-    "boost-smart-ptr"
+    "boost-property-tree"
   ]
 }

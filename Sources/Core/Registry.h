@@ -1,5 +1,4 @@
-#ifndef CORE_REGISTRY
-#define CORE_REGISTRY
+#pragma once
 
 #include "Build.h"
 #include "Plugin.h"
@@ -72,5 +71,3 @@ namespace Core
 
 
 }
-
-#endif

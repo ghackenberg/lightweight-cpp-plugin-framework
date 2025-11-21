@@ -1,5 +1,4 @@
-#ifndef CORE_BUILD_H
-#define CORE_BUILD_H
+#pragma once
 
 #include "Platform.h"
 
@@ -7,6 +6,4 @@
 #	define CORE_API CORE_EXPORT
 #else
 #	define CORE_API CORE_IMPORT
-#endif
-
 #endif

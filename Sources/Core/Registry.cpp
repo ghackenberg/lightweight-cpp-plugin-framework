@@ -4,11 +4,11 @@
 
 using namespace Core;
 
-Registry* Registry::mInstance = 0;
+Registry* Registry::mInstance = nullptr;
 
 Registry* Registry::getInstance()
 {
-	if (mInstance == 0)
+	if (mInstance == nullptr)
 		mInstance = new Registry();
 
 	return mInstance;

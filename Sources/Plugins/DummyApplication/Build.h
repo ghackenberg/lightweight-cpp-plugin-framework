@@ -1,5 +1,4 @@
-#ifndef PLUGINS_DUMMYAPPLICATION_BUILD_H
-#define PLUGINS_DUMMYAPPLICATION_BUILD_H
+#pragma once
 
 #include <Core/Platform.h>
 
@@ -7,6 +6,4 @@
 #	define PLUGINS_DUMMYAPPLICATION_API CORE_EXPORT
 #else
 #	define PLUGINS_DUMMYAPPLICATION_API CORE_IMPORT
-#endif
-
 #endif

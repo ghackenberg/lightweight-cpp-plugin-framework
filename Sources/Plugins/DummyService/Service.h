@@ -1,5 +1,4 @@
-#ifndef PLUGINS_DUMMYSERVICE_SERVICE_H
-#define PLUGINS_DUMMYSERVICE_SERVICE_H
+#pragma once
 
 #include "Build.h"
 #include <Plugins/DummyApplication/Service.h>
@@ -25,5 +24,3 @@ namespace Plugins
 
 	}
 }
-
-#endif

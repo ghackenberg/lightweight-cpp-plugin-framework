@@ -1,10 +1,9 @@
-#ifndef CORE_LIBRARY_H
-#define CORE_LIBRARY_H
+#pragma once
 
 #include "Build.h"
 #include <string>
 #include <memory>
-#
+
 #ifdef CORE_WINDOWS
 #	include "Windows.h"
 #	define LIBRARY_HANDLE HMODULE
@@ -52,5 +51,3 @@ namespace Core
 	typedef std::shared_ptr<Library> LibraryPtr;
 
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef CORE_FACTORY_H
-#define CORE_FACTORY_H
+#pragma once
 
 #include "Build.h"
 #include "Service.h"
@@ -44,5 +43,3 @@ namespace Core
 	{\
 		return classname::getService(name);\
 	}
-
-#endif

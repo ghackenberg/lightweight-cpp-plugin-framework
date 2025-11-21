@@ -1,5 +1,4 @@
-#ifndef PLUGINS_DUMMYAPPLICATION_APPLICATION_H
-#define PLUGINS_DUMMYAPPLICATION_APPLICATION_H
+#pragma once
 
 #include "Build.h"
 #include <Core/Application.h>
@@ -25,5 +24,3 @@ namespace Plugins
 
 	}
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef CORE_PLATFORM_H
-#define CORE_PLATFORM_H
+#pragma once
 
 #ifdef WIN32
 #	define CORE_WINDOWS
@@ -16,6 +15,4 @@
 #	define CORE_EXPORT
 #	define CORE_IMPORT
 #	define CORE_EXTERN
-#endif
-
 #endif
