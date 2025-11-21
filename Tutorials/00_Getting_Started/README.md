@@ -63,7 +63,7 @@ A console window will appear, and you should see the following output from the `
 
 ```
 Dienstimplementierung Plugins::DummyService::Service
-2
+calculate(1, 1) = 2
 Hello world!
 ```
 

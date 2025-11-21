@@ -19,7 +19,7 @@ int Application::run(int argc, char **argv)
 
 		ServicePtr service = plugin->getService<Plugins::DummyApplication::Service>(iterator->second);
 
-		std::cout << service->calculate(1, 1) << std::endl;
+		std::cout << "calculate(1, 1) = " << service->calculate(1, 1) << std::endl;
 	}
 
 	std::cout << "Hello world!" << std::endl;

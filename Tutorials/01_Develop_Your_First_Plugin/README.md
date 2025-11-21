@@ -185,9 +185,9 @@ Finally, run the application by pressing **F5**. The console output should now s
 
 ```
 Dienstimplementierung Plugins::DummyService::Service
-1 + 1 = 2
+calculate(1, 1) = 2
 Dienstimplementierung Plugins::MultiplierService::Service
-1 * 1 = 1
+calculate(1, 1) = 1
 Hello world!
 ```
 
