@@ -10,8 +10,6 @@ This approach is ideal for a wide range of software, from desktop tools like ima
 
 ## Dependencies
 
-This framework leverages several external libraries to provide its core functionalities. Dependencies are categorized by when they are needed: during compilation (build-time) or when the application is running (run-time).
-
 ```mermaid
 flowchart
   subgraph "Build- and run-time"
@@ -23,6 +21,8 @@ flowchart
     vcpkg
   end
 ```
+
+This framework leverages several external libraries to provide its core functionalities. Dependencies are categorized by when they are needed: during compilation (build-time) or when the application is running (run-time).
 
 ### *Build*-time **only**
 
