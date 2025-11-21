@@ -21,7 +21,6 @@ MultiplierService/
 ├── CMakeLists.txt
 ├── Plugin.xml
 ├── Build.h
-├── Namespace.h
 ├── Service.h
 ├── Service.cpp
 └── main.cpp
@@ -37,7 +36,6 @@ Copy the following code into `Sources/Plugins/MultiplierService/CMakeLists.txt`:
 # Define the shared library target for our plugin
 add_library(Plugins_MultiplierService SHARED
 	Build.h
-	Namespace.h
 	main.cpp
 	Service.h
 	Service.cpp)
@@ -70,9 +68,9 @@ Copy the following into `Sources/Plugins/MultiplierService/Plugin.xml`:
 ```
 This defines a plugin named `Plugins::MultiplierService` that provides one `Service`. The `extends` attribute tells the framework that our service is a concrete implementation of the abstract service from `Plugins::DummyApplication`. We also declare a dependency on that plugin.
 
-## Step 4: Add Boilerplate Code (`Build.h`, `Namespace.h`)
+## Step 4: Add Boilerplate Code (`Build.h`)
 
-These files help with exporting symbols and documenting the namespace.
+These files help with exporting symbols.
 
 **`Build.h`:**
 ```cpp
@@ -88,14 +86,6 @@ These files help with exporting symbols and documenting the namespace.
 #endif
 
 #endif
-```
-
-**`Namespace.h`:**
-```cpp
-/**
- * \namespace Plugins::MultiplierService
- * \brief A sample plugin that implements the DummyApplication::Service interface.
- */
 ```
 
 ## Step 5: Define and Implement the Service
