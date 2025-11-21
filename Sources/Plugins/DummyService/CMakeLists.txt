@@ -1,6 +1,5 @@
 add_library(Plugins_DummyService SHARED
 	Build.h
-	Namespace.h
 	main.cpp
 	Service.h
 	Service.cpp)

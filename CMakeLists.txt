@@ -33,7 +33,6 @@ include_directories(${CMAKE_SOURCE_DIR}/Sources)
 add_library(Core SHARED
 	Sources/Core/Platform.h
 	Sources/Core/Build.h
-	Sources/Core/Namespace.h
 	Sources/Core/Registry.h
 	Sources/Core/Registry.cpp
 	Sources/Core/Plugin.h
