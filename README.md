@@ -4,6 +4,14 @@
 
 This framework provides a simple yet powerful architecture for building modular C++ applications. It allows developers to extend an application's functionality by simply adding new plugins to a designated folder, without needing to recompile the core application.
 
+### Developer Tutorials
+
+This project includes step-by-step tutorials to help you get started with the framework.
+
+*   **[00 - Getting Started](./Tutorials/00_Getting_Started/README.md)**: This guide walks you through cloning the repository, setting up the development environment on Windows with Visual Studio 2026, and building and running the project for the first time. It covers the automatic dependency installation via vcpkg and how to launch the main application.
+
+*   **[01 - Develop Your First Plugin](./Tutorials/01_Develop_Your_First_Plugin/README.md)**: Learn how to create a new plugin from scratch. This tutorial demonstrates how to build a `MultiplierService` that implements an existing abstract service, configure its build system with CMake, create its manifest file, and integrate it into the main application.
+
 ### Project Dependencies
 
 Dependency and build management:
