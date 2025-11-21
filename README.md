@@ -39,6 +39,11 @@ These libraries are essential both for building the project and for its operatio
 
 ## Tutorials
 
+```mermaid
+flowchart LR
+  1["00<br/>Getting<br/>started"] --> 2["01<br/>Developer Your<br/>First Plugin"] --> 3["02<br/>Understand<br/>The Core"]
+```
+
 This project includes step-by-step tutorials to help you get started with the framework.
 
 *   **[00 - Getting Started](./Tutorials/00_Getting_Started/README.md)**: This guide walks you through cloning the repository, setting up the development environment on Windows with Visual Studio 2026, and building and running the project for the first time. It covers the automatic dependency installation via vcpkg and how to launch the main application.
