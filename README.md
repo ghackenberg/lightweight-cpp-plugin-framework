@@ -4,7 +4,7 @@
 
 This framework provides a simple yet powerful architecture for building modular C++ applications. It allows developers to extend an application's functionality by simply adding new plugins to a designated folder, without needing to recompile the core application.
 
-### Dependencies
+### Project Dependencies
 
 Dependency and build management:
 
