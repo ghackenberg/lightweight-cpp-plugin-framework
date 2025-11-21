@@ -18,6 +18,8 @@ This project includes step-by-step tutorials to help you get started with the fr
 
 ### Project Dependencies
 
+![](./Images/Dependencies.jpg)
+
 Dependency and build management:
 
 *   **CMake**: The cross-platform build system used to configure and generate the project builds.
