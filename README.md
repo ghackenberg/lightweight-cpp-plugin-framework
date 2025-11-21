@@ -8,6 +8,15 @@ The architecture's power is rooted in the separation of interfaces and implement
 
 This approach is ideal for a wide range of software, from desktop tools like image editors and digital audio workstations to game engines that require custom behaviors. Looking forward, the design is well-suited for modern deployment scenarios like **WebAssembly (WASM)**. An application compiled to WASM could dynamically load plugins as separate `.wasm` modules, enabling high-performance, extensible web applications where features are loaded on demand.
 
+## Images
+
+| Image | Name | Description |
+|-|-|-|
+| ![](./Images/Logo.jpg) | Logo | The official logo of the Lightweight C++ Plugin Framework. |
+| ![](./Images/Applications.jpg) | Applications | An illustration of how multiple, distinct applications can be composed from a common set of plugins. |
+| ![](./Images/Dependencies.jpg) | Dependencies | A diagram showing the framework's core dependencies, such as Boost, CMake, and vcpkg. |
+| ![](./Images/Services.jpg) | Services | An abstract representation of a plugin providing a concrete service to fulfill another plugin's abstract interface. |
+
 ## Dependencies
 
 ```mermaid
