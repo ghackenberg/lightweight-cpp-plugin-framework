@@ -1,4 +1,4 @@
-add_library(Plugins_DummyApplication SHARED
+add_library(Plugins_DummyApplicationCli SHARED
 	"Build.h"
 	"main.cpp"
 	"Service.h"
@@ -6,6 +6,6 @@ add_library(Plugins_DummyApplication SHARED
 	"Application.h"
 	"Application.cpp")
 
-target_link_libraries(Plugins_DummyApplication Core)
+target_link_libraries(Plugins_DummyApplicationCli Core)
 
 configure_file("Plugin.xml" "Plugin.xml")

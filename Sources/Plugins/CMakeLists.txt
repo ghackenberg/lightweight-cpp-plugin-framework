@@ -1,2 +1,3 @@
 add_subdirectory(DummyService)
-add_subdirectory(DummyApplication)
+add_subdirectory(DummyApplicationCli)
+add_subdirectory(DummyApplicationGui)

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Build.h"
-#include <Plugins/DummyApplication/Service.h>
+#include <Plugins/DummyApplicationCli/Service.h>
 #include <memory>
 
 namespace Plugins
@@ -10,7 +10,7 @@ namespace Plugins
 	{
 
 		/// Sample service.
-		class PLUGINS_DUMMYSERVICE_API Service : public Plugins::DummyApplication::Service
+		class PLUGINS_DUMMYSERVICE_API Service : public Plugins::DummyApplicationCli::Service
 		{
 		public:
 

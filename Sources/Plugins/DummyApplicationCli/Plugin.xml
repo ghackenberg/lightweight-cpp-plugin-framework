@@ -1,0 +1,6 @@
+<Plugin name="Plugins::DummyApplicationCli">
+  <Services>
+    <Service name="Application" extends="Core::Application"/>
+    <Service name="Service" type="abstract"/>
+  </Services>
+</Plugin>
