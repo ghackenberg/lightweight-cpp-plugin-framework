@@ -31,8 +31,8 @@ add_library(Core SHARED
 	Sources/Core/Platform.h
 	Sources/Core/Build.h
 	Sources/Core/Namespace.h
-	Sources/Core/Root.h
-	Sources/Core/Root.cpp
+	Sources/Core/Registry.h
+	Sources/Core/Registry.cpp
 	Sources/Core/Plugin.h
 	Sources/Core/Plugin.cpp
 	Sources/Core/Service.h

@@ -1,21 +1,21 @@
 #include "Application.h"
 #include "Service.h"
-#include <Core/Root.h>
+#include <Core/Registry.h>
 #include <iostream>
 
 using namespace Plugins::DummyApplication;
 
 int Application::run(int argc, char **argv)
 {
-	Core::Root *root = Core::Root::getInstance();
+	Core::Registry *registry = Core::Registry::getInstance();
 
-	Core::Root::ServiceList implementations = root->getImplementations("Plugins::DummyApplication::Service");
+	Core::Registry::ServiceList implementations = registry->getImplementations("Plugins::DummyApplication::Service");
 
-	for (Core::Root::ServiceList::const_iterator iterator = implementations.begin(); iterator != implementations.end(); iterator++)
+	for (Core::Registry::ServiceList::const_iterator iterator = implementations.begin(); iterator != implementations.end(); iterator++)
 	{
 		std::cout << "Dienstimplementierung " << iterator->first << "::" << iterator->second << std::endl;
 
-		Core::PluginPtr plugin = root->getPlugin(iterator->first);
+		Core::PluginPtr plugin = registry->getPlugin(iterator->first);
 
 		ServicePtr service = plugin->getService<Plugins::DummyApplication::Service>(iterator->second);
 

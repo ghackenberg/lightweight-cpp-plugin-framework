@@ -1,5 +1,5 @@
-#ifndef CORE_ROOT
-#define CORE_ROOT
+#ifndef CORE_REGISTRY
+#define CORE_REGISTRY
 
 #include "Build.h"
 #include "Plugin.h"
@@ -13,14 +13,8 @@
 
 namespace Core
 {
-	/// Forward declaration for SWIG.
-	class Plugin;
-
-	/// Shared pointer definition for SWIG.
-	typedef boost::shared_ptr<Plugin> PluginPtr;
-
 	/// Singleton for accessing core functionality.
-	class CORE_API Root
+	class CORE_API Registry
 	{
 	public:
 
@@ -36,7 +30,7 @@ namespace Core
 	public:
 
 		/// Singleton accessor.
-		static Root* getInstance();
+		static Registry* getInstance();
 
 		/// Add plugins folder.
 		void addPluginFolder(const std::string &path);
@@ -59,7 +53,7 @@ namespace Core
 	private:
 
 		/// Private constructor.
-		Root();
+		Registry();
 
 		/// Add plugin folder.
 		void addPlugin(const std::string &path);
@@ -67,7 +61,7 @@ namespace Core
 	private:
 
 		/// Singleton pointer.
-		static Root* mInstance;
+		static Registry* mInstance;
 
 		/// The internal plugin map.
 		PluginMap  mPluginMap;

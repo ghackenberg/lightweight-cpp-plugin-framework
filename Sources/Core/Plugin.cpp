@@ -1,5 +1,5 @@
 #include "Plugin.h"
-#include "Root.h"
+#include "Registry.h"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 
@@ -112,7 +112,7 @@ void Plugin::load()
 		// Load the dependencies
 		for (DependencyList::iterator iter = mDependencyList.begin(); iter != mDependencyList.end(); iter++)
 		{
-			Root::getInstance()->getPlugin(*iter)->load();
+			Registry::getInstance()->getPlugin(*iter)->load();
 		}
 
 		// Load the own DLL by resolving the getter symbol

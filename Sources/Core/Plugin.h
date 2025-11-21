@@ -13,12 +13,6 @@
 
 namespace Core
 {
-	/// Forward declaration for SWIG.
-	class Service;
-
-	/// Shared pointer definition for SWIG.
-	typedef boost::shared_ptr<Service> ServicePtr;
-	
 	/// Base class for plugins.
 	class CORE_API Plugin
 	{

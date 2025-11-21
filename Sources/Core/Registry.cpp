@@ -1,26 +1,26 @@
-#include "Root.h"
+#include "Registry.h"
 #include <iostream>
 #include <boost/filesystem.hpp>
 
 using namespace Core;
 using namespace boost;
 
-Root* Root::mInstance = 0;
+Registry* Registry::mInstance = 0;
 
-Root* Root::getInstance()
+Registry* Registry::getInstance()
 {
 	if (mInstance == 0)
-		mInstance = new Root();
+		mInstance = new Registry();
 
 	return mInstance;
 }
 
-Root::Root()
+Registry::Registry()
 {
 
 }
 
-void Root::addPluginFolder(const std::string &path)
+void Registry::addPluginFolder(const std::string &path)
 {
 	if (filesystem::is_directory(path))
 	{
@@ -34,7 +34,7 @@ void Root::addPluginFolder(const std::string &path)
 	}
 }
 
-PluginPtr Root::getPlugin(const std::string &name) const
+PluginPtr Registry::getPlugin(const std::string &name) const
 {
 	PluginMap::const_iterator iter = mPluginMap.find(name);
 
@@ -44,7 +44,7 @@ PluginPtr Root::getPlugin(const std::string &name) const
 		throw "Plugin does not exist!";
 }
 
-Root::ServiceList Root::getImplementations(const std::string &service) const
+Registry::ServiceList Registry::getImplementations(const std::string &service) const
 {
 	ServiceList result;
 
@@ -78,7 +78,7 @@ Root::ServiceList Root::getImplementations(const std::string &service) const
 
 #ifndef _NDEBUG
 
-void Root::dumpPlugins(std::ostream &out) const
+void Registry::dumpPlugins(std::ostream &out) const
 {
 	out << "digraph G {" << std::endl;
 	out << "\tcompound = true;" << std::endl;
@@ -114,7 +114,7 @@ void Root::dumpPlugins(std::ostream &out) const
 
 #endif
 
-void Root::addPlugin(const std::string &path)
+void Registry::addPlugin(const std::string &path)
 {
 	PluginPtr plugin(new Plugin(path));
 
