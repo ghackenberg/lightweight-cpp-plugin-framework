@@ -41,7 +41,7 @@ This framework leverages several external libraries to provide its core function
 
 These dependencies are crucial for setting up the development environment and compiling the project:
 
-*   **CMake**: The cross-platform build system used to configure and generate the project builds.
+*   **CMake**: The cross-platform build system used to configure and generate the project builds (i.e. core and plugin shared libraries as well as main executable).
 *   **vcpkg**: A C++ package manager used to install and manage library dependencies. The required libraries are listed in the `vcpkg.json` file in the root directory.
 
 ### Build- and run-time
