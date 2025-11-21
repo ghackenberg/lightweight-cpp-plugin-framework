@@ -24,7 +24,7 @@ flowchart
 
 This framework leverages several external libraries to provide its core functionalities. Dependencies are categorized by when they are needed: during compilation (build-time) or when the application is running (run-time).
 
-### *Build*-time **only**
+### Build-time **only**
 
 These dependencies are crucial for setting up the development environment and compiling the project:
 
