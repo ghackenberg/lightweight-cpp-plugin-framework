@@ -2,7 +2,11 @@
 
 cmake_minimum_required(VERSION 4.1)
 
-project(lightweight-cpp-plugin-framework VERSION 0.1.0)
+project(lightweight-cpp-plugin-framework
+	VERSION 0.1.0
+	DESCRIPTION "A lightweight C++ plugin framework"
+	HOMEPAGE_URL "https://github.com/ghackenberg/lightweight-cpp-plugin-framework"
+	LANGUAGES CXX)
 
 set(CMAKE_DEBUG_POSTFIX "_d")
 
@@ -21,7 +25,7 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 include_directories(${CMAKE_SOURCE_DIR}/Sources)
 
-# Core
+# Framework Core Library
 
 add_library(Core SHARED
 	Sources/Core/Platform.h
@@ -43,7 +47,7 @@ add_library(Core SHARED
 	
 target_link_libraries(Core ${Boost_FILESYSTEM_LIBRARY})
 
-# Main
+# Framework Main Executable
 
 add_executable(Main
 	Sources/Main/main.cpp)
