@@ -1,0 +1,2 @@
+add_subdirectory(DummyService)
+add_subdirectory(DummyApplication)

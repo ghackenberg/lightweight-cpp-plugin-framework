@@ -1,0 +1,57 @@
+# CMake
+
+cmake_minimum_required(VERSION 4.1)
+
+project(lightweight-cpp-plugin-framework)
+
+set(CMAKE_DEBUG_POSTFIX "_d")
+
+# Boost
+
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+
+find_package(Boost COMPONENTS system filesystem property_tree REQUIRED)
+
+include_directories(${Boost_INCLUDE_DIRS})
+
+link_directories(${Boost_LIBRARY_DIRS})
+
+# Self
+
+include_directories(${CMAKE_SOURCE_DIR}/Sources)
+
+# Core
+
+add_library(Core SHARED
+	Sources/Core/Platform.h
+	Sources/Core/Build.h
+	Sources/Core/Namespace.h
+	Sources/Core/Root.h
+	Sources/Core/Root.cpp
+	Sources/Core/Plugin.h
+	Sources/Core/Plugin.cpp
+	Sources/Core/Service.h
+	Sources/Core/Service.cpp
+	Sources/Core/Application.h
+	Sources/Core/Application.cpp
+	Sources/Core/Library.h
+	Sources/Core/Library.cpp
+	Sources/Core/Registry.h
+	Sources/Core/Registry.cpp
+	Sources/Core/ExtensionMap.bat)
+	
+target_link_libraries(Core ${Boost_FILESYSTEM_LIBRARY})
+
+# Main
+
+add_executable(Main
+	Sources/Main/main.cpp)
+
+target_link_libraries(Main Core)
+
+configure_file(Sources/Main/Configuration.xml Configuration.xml)
+
+# Plugins
+
+add_subdirectory(Sources/Plugins Plugins)

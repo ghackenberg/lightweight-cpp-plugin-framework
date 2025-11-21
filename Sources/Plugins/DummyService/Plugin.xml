@@ -1,0 +1,8 @@
+<Plugin name="Plugins::DummyService">
+  <Services>
+    <Service name="Service" extends="Plugins::DummyApplication::Service"/>
+  </Services>
+  <Dependencies>
+    <Dependency plugin="Plugins::DummyApplication"/>
+  </Dependencies>
+</Plugin>

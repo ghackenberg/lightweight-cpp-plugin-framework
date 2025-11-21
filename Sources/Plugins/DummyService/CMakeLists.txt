@@ -1,0 +1,11 @@
+add_library(Plugins_DummyService SHARED
+	Build.h
+	Namespace.h
+	main.cpp
+	Service.h
+	Service.cpp)
+
+target_link_libraries(Plugins_DummyService Core)
+target_link_libraries(Plugins_DummyService Plugins_DummyApplication)
+
+configure_file(Plugin.xml Plugin.xml)

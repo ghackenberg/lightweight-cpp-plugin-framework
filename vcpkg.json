@@ -1,0 +1,7 @@
+{
+  "dependencies": [
+    "boost-filesystem",
+    "boost-property-tree",
+    "boost-smart-ptr"
+  ]
+}

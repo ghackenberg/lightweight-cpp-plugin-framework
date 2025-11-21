@@ -1,0 +1,12 @@
+#ifndef PLUGINS_DUMMYAPPLICATION_BUILD_H
+#define PLUGINS_DUMMYAPPLICATION_BUILD_H
+
+#include <Core/Platform.h>
+
+#ifdef Plugins_DummyApplication_EXPORTS
+#	define PLUGINS_DUMMYAPPLICATION_API CORE_EXPORT
+#else
+#	define PLUGINS_DUMMYAPPLICATION_API CORE_IMPORT
+#endif
+
+#endif

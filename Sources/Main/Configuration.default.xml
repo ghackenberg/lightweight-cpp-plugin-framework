@@ -1,0 +1,6 @@
+<Configuration>
+  <PluginFolders>
+    <Folder path="./Plugins"/>
+  </PluginFolders>
+  <Application plugin="Plugins::DummyApplication" service="Application"/>
+</Configuration>
