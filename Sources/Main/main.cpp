@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 
 	PluginPtr plugin = registry->getPlugin(pluginName);
 	ServicePtr service = plugin->getService(serviceName);
-	ApplicationPtr application = boost::dynamic_pointer_cast<Application>(service);
+	ApplicationPtr application = std::dynamic_pointer_cast<Application>(service);
 
 	return application->run(argc, argv);
 }

@@ -3,7 +3,7 @@
 
 #include "Build.h"
 #include "Service.h"
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Core
 {
@@ -19,7 +19,7 @@ namespace Core
 	};
 
 	/// Shared application service.
-	typedef boost::shared_ptr<Application> ApplicationPtr;
+	typedef std::shared_ptr<Application> ApplicationPtr;
 
 }
 

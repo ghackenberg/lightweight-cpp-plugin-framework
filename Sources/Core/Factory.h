@@ -4,7 +4,7 @@
 #include "Build.h"
 #include "Service.h"
 #include <string>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Core
 {

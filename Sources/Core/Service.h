@@ -2,7 +2,7 @@
 #define CORE_SERVICE_H
 
 #include "Build.h"
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Core
 {
@@ -18,7 +18,7 @@ namespace Core
 	};
 
 	/// Shared service object.
-	typedef boost::shared_ptr<Service> ServicePtr;
+	typedef std::shared_ptr<Service> ServicePtr;
 
 }
 

@@ -3,7 +3,7 @@
 
 #include "Build.h"
 #include <string>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #
 #ifdef CORE_WINDOWS
 #	include "Windows.h"
@@ -49,7 +49,7 @@ namespace Core
 	};
 
 	/// Shared library object.
-	typedef boost::shared_ptr<Library> LibraryPtr;
+	typedef std::shared_ptr<Library> LibraryPtr;
 
 }
 

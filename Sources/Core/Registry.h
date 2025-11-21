@@ -5,7 +5,7 @@
 #include "Plugin.h"
 #include "Service.h"
 #include <list>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 #ifndef _NDEBUG
 #	include <iostream>

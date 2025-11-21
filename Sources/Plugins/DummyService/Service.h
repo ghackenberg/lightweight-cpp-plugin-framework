@@ -3,7 +3,7 @@
 
 #include "Build.h"
 #include <Plugins/DummyApplication/Service.h>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Plugins
 {
@@ -21,7 +21,7 @@ namespace Plugins
 		};
 
 		/// Shared service object.
-		typedef boost::shared_ptr<Service> ServicePtr;
+		typedef std::shared_ptr<Service> ServicePtr;
 
 	}
 }

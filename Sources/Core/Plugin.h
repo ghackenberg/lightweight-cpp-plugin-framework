@@ -8,7 +8,7 @@
 #include <string>
 #include <list>
 #include <map>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/property_tree/ptree.hpp>
 
 namespace Core
@@ -80,19 +80,19 @@ namespace Core
 
 		/// Get a casted service by name.
 		template <class ServiceType>
-		boost::shared_ptr<ServiceType> getService(const std::string &name)
+		std::shared_ptr<ServiceType> getService(const std::string &name)
 		{
-			return boost::dynamic_pointer_cast<ServiceType>(getService(name));
+			return std::dynamic_pointer_cast<ServiceType>(getService(name));
 		}
 		/// Get a casted service by type id.
 		template <class ServiceType>
-		boost::shared_ptr<ServiceType> getService(const std::type_info &type)
+		std::shared_ptr<ServiceType> getService(const std::type_info &type)
 		{
-			return boost::dynamic_pointer_cast<ServiceType>(getService(type));
+			return std::dynamic_pointer_cast<ServiceType>(getService(type));
 		}
 		/// Get a casted service by type.
 		template <class ServiceType>
-		boost::shared_ptr<ServiceType> getService()
+		std::shared_ptr<ServiceType> getService()
 		{
 			return getService<ServiceType>(typeid(ServiceType));
 		}
@@ -129,7 +129,7 @@ namespace Core
 	};
 
 	/// Shared plugin object.
-	typedef boost::shared_ptr<Plugin> PluginPtr;
+	typedef std::shared_ptr<Plugin> PluginPtr;
 
 }
 
