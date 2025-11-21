@@ -1,8 +1,8 @@
 #include "Application.h"
-#include <Core/Registry.h>
+#include <Core/Factory.h>
 
 using namespace Plugins::DummyApplication;
 
-typedef Core::Registry<Application> Registry;
+typedef Core::Factory<Application> Factory;
 
-DECLARE_SERVICE_REGISTRY(Registry)
+DECLARE_SERVICE_FACTORY(Factory)

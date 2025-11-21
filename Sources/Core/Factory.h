@@ -1,5 +1,5 @@
-#ifndef CORE_REGISTRY_H
-#define CORE_REGISTRY_H
+#ifndef CORE_FACTORY_H
+#define CORE_FACTORY_H
 
 #include "Build.h"
 #include "Service.h"
@@ -10,7 +10,7 @@ namespace Core
 {
 
 	/// The end of the service chain.
-	struct RegistryEnd
+	struct FactoryChainEnd
 	{
 		/// Throw an error.
 		static Service* getService(const std::string &name)
@@ -19,9 +19,9 @@ namespace Core
 		}
 	};
 
-	/// Template-based service registry implementation.
-	template <class ServiceType, class ServiceChain = RegistryEnd>
-	struct Registry
+	/// Template-based service factory implementation.
+	template <class ServiceType, class FactoryChain = FactoryChainEnd>
+	struct Factory
 	{
 		/// Return the own service or forward the request to the next item in the template chain.
 		static Service* getService(const std::string &name)
@@ -29,7 +29,7 @@ namespace Core
 			if (typeid(ServiceType).name() == name)
 				return new ServiceType();
 			else
-				return ServiceChain::getService(name);
+				return FactoryChain::getService(name);
 		}
 	};
 
@@ -39,7 +39,7 @@ namespace Core
 }
 
 /// Plugin declaration macro.
-#define DECLARE_SERVICE_REGISTRY(classname) \
+#define DECLARE_SERVICE_FACTORY(classname) \
 	CORE_EXTERN CORE_EXPORT Core::Service* getService(const std::string &name)\
 	{\
 		return classname::getService(name);\

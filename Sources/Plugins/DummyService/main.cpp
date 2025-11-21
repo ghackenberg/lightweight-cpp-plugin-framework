@@ -1,8 +1,8 @@
 #include "Service.h"
-#include <Core/Registry.h>
+#include <Core/Factory.h>
 
 using namespace Plugins::DummyService;
 
-typedef Core::Registry<Service> Registry;
+typedef Core::Factory<Service> Factory;
 
-DECLARE_SERVICE_REGISTRY(Registry)
+DECLARE_SERVICE_FACTORY(Factory)

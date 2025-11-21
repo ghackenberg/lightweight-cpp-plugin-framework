@@ -6,8 +6,7 @@ project(lightweight-cpp-plugin-framework
 	VERSION 0.1.0
 	DESCRIPTION "A lightweight C++ plugin framework"
 	HOMEPAGE_URL "https://github.com/ghackenberg/lightweight-cpp-plugin-framework"
-	LANGUAGES CXX
-	SPDX_LICENSE MIT)
+	LANGUAGES CXX)
 
 set(CMAKE_DEBUG_POSTFIX "_d")
 
@@ -42,8 +41,8 @@ add_library(Core SHARED
 	Sources/Core/Application.cpp
 	Sources/Core/Library.h
 	Sources/Core/Library.cpp
-	Sources/Core/Registry.h
-	Sources/Core/Registry.cpp
+	Sources/Core/Factory.h
+	Sources/Core/Factory.cpp
 	Sources/Core/ExtensionMap.bat)
 	
 target_link_libraries(Core ${Boost_FILESYSTEM_LIBRARY})

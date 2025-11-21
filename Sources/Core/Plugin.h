@@ -3,7 +3,7 @@
 
 #include "Build.h"
 #include "Library.h"
-#include "Registry.h"
+#include "Factory.h"
 #include "Service.h"
 #include <string>
 #include <list>
