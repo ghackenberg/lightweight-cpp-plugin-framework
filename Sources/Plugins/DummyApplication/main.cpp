@@ -5,4 +5,4 @@ using namespace Plugins::DummyApplication;
 
 typedef Core::Registry<Application> Registry;
 
-DECLARE_SERICE_REGISTRY(Registry)
+DECLARE_SERVICE_REGISTRY(Registry)

@@ -5,4 +5,4 @@ using namespace Plugins::DummyService;
 
 typedef Core::Registry<Service> Registry;
 
-DECLARE_SERICE_REGISTRY(Registry)
+DECLARE_SERVICE_REGISTRY(Registry)

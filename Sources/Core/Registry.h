@@ -39,7 +39,7 @@ namespace Core
 }
 
 /// Plugin declaration macro.
-#define DECLARE_SERICE_REGISTRY(classname) \
+#define DECLARE_SERVICE_REGISTRY(classname) \
 	CORE_EXTERN CORE_EXPORT Core::Service* getService(const std::string &name)\
 	{\
 		return classname::getService(name);\

@@ -137,9 +137,7 @@ Services are C++ classes that inherit from `Core::Service` (or a subclass).
 
     int Service::calculate(int a, int b)
     {
-
         return a + b;
-
     }
     ```
 
@@ -157,7 +155,7 @@ using namespace Plugins::DummyService;
 
 typedef Core::Registry<Service> Registry;
 
-DECLARE_SERICE_REGISTRY(Registry)
+DECLARE_SERVICE_REGISTRY(Registry)
 ```
 
 #### 4. Exporting Symbols
