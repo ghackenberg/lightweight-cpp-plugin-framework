@@ -4,6 +4,8 @@
 
 This framework provides a simple yet powerful architecture for building modular C++ applications. It was born from the need for a dependency-light, cross-platform plugin system that avoids the complexity of larger frameworks. The core motivation is to enable true "drop-in" extensibility: new functionality can be added by simply placing a plugin into a folder, with no need to recompile the core application.
 
+The architecture's power is rooted in the separation of interfaces and implementations. A plugin can define an **abstract service**, which acts as a contract or an "extension point" for a certain capability. Other, independent plugins can then provide **concrete service** implementations that fulfill this contract. For example, a core plugin could define an abstract "ImageEffect" service, and then separate plugins could implement "GaussianBlur", "Sharpen", and "Invert" effects. This promotes a highly decoupled system where extension points are clearly defined and independently implemented.
+
 This approach is ideal for a wide range of software, from desktop tools like image editors and digital audio workstations to game engines that require custom behaviors. Looking forward, the design is well-suited for modern deployment scenarios like **WebAssembly (WASM)**. An application compiled to WASM could dynamically load plugins as separate `.wasm` modules, enabling high-performance, extensible web applications where features are loaded on demand.
 
 ### Developer Tutorials
