@@ -2,7 +2,9 @@
 
 ![](./Images/SocialPreview.jpg)
 
-This framework provides a simple yet powerful architecture for building modular C++ applications. It allows developers to extend an application's functionality by simply adding new plugins to a designated folder, without needing to recompile the core application.
+This framework provides a simple yet powerful architecture for building modular C++ applications. It was born from the need for a dependency-light, cross-platform plugin system that avoids the complexity of larger frameworks. The core motivation is to enable true "drop-in" extensibility: new functionality can be added by simply placing a plugin into a folder, with no need to recompile the core application.
+
+This approach is ideal for a wide range of software, from desktop tools like image editors and digital audio workstations to game engines that require custom behaviors. Looking forward, the design is well-suited for modern deployment scenarios like **WebAssembly (WASM)**. An application compiled to WASM could dynamically load plugins as separate `.wasm` modules, enabling high-performance, extensible web applications where features are loaded on demand.
 
 ### Developer Tutorials
 
