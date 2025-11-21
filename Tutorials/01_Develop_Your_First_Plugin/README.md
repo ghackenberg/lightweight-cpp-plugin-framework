@@ -151,13 +151,13 @@ This final piece of code creates the factory function that allows the framework 
 **`main.cpp`:**
 ```cpp
 #include "Service.h"
-#include <Core/Registry.h>
+#include <Core/Factory.h>
 
 using namespace Plugins::MultiplierService;
 
 // Register our Service class with the framework
-typedef Core::Registry<Service> Registry;
-DECLARE_SERICE_REGISTRY(Registry)
+typedef Core::Factory<Service> Factory;
+DECLARE_SERVICE_FACTORY(Factory)
 ```
 
 ## Step 7: Add the Plugin to the Main Build
