@@ -8,20 +8,36 @@ The architecture's power is rooted in the separation of interfaces and implement
 
 This approach is ideal for a wide range of software, from desktop tools like image editors and digital audio workstations to game engines that require custom behaviors. Looking forward, the design is well-suited for modern deployment scenarios like **WebAssembly (WASM)**. An application compiled to WASM could dynamically load plugins as separate `.wasm` modules, enabling high-performance, extensible web applications where features are loaded on demand.
 
-### Dependencies
+## Dependencies
 
-![](./Images/Dependencies.jpg)
+This framework leverages several external libraries to provide its core functionalities. Dependencies are categorized by when they are needed: during compilation (build-time) or when the application is running (run-time).
 
-**Build time** - Build and dependency management:
+```mermaid
+flowchart
+  subgraph "Build- and run-time"
+    Boost
+  end
+  subgraph "Build-time only"
+    direction TB
+    CMake
+    vcpkg
+  end
+```
+
+### *Build*-time **only**
+
+These dependencies are crucial for setting up the development environment and compiling the project:
 
 *   **CMake**: The cross-platform build system used to configure and generate the project builds.
 *   **vcpkg**: A C++ package manager used to install and manage library dependencies. The required libraries are listed in the `vcpkg.json` file in the root directory.
 
-**Run time** - Memory management, filesystem interaction, XML parsing:
+### Build- **and** run-time
+
+These libraries are essential both for building the project and for its operation at runtime, handling common tasks like memory management and data parsing:
 
 *   **Boost**: A collection of high-quality, peer-reviewed C++ libraries. This framework uses Boost for various utilities, including smart pointers (`boost::shared_ptr`).
 
-### Tutorials
+## Tutorials
 
 This project includes step-by-step tutorials to help you get started with the framework.
 
