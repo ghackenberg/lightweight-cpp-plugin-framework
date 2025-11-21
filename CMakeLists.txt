@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 4.1)
 
-project(lightweight-cpp-plugin-framework)
+project(lightweight-cpp-plugin-framework VERSION 0.1.0)
 
 set(CMAKE_DEBUG_POSTFIX "_d")
 

@@ -1,4 +1,6 @@
 {
+  "name": "lightweight-cpp-plugin-framework",
+  "version": "0.1.0",
   "dependencies": [
     "boost-filesystem",
     "boost-property-tree",
