@@ -1,6 +1,9 @@
 {
   "name": "lightweight-cpp-plugin-framework",
   "version": "0.1.0",
+  "description": "A lightweight C++ plugin framework",
+  "homepage": "https://github.com/ghackenberg/lightweight-cpp-plugin-framework",
+  "license": "MIT",
   "dependencies": [
     "boost-filesystem",
     "boost-property-tree",

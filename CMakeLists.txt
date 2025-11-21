@@ -6,7 +6,8 @@ project(lightweight-cpp-plugin-framework
 	VERSION 0.1.0
 	DESCRIPTION "A lightweight C++ plugin framework"
 	HOMEPAGE_URL "https://github.com/ghackenberg/lightweight-cpp-plugin-framework"
-	LANGUAGES CXX)
+	LANGUAGES CXX
+	SPDX_LICENSE MIT)
 
 set(CMAKE_DEBUG_POSTFIX "_d")
 
