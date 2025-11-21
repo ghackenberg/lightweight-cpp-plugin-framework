@@ -4,7 +4,7 @@ Welcome to the deep dive into the heart of the **lightweight-cpp-plugin-framewor
 
 The framework is designed around a central idea: **decoupling**. The main application should not need to know the concrete details of its plugins. It should only interact with them through well-defined interfaces called **Services**. This allows you to add, remove, or update features (plugins) without ever recompiling the core application.
 
-## Classes
+## Architecture
 
 The core logic resides in the `Sources/Core` directory. Let's break down the most important classes. It's important to note the distinction between `Root`, which is the main run-time registry, and `Registry`, which is a compile-time helper used inside each plugin.
 
@@ -52,7 +52,7 @@ classDiagram
 
 *   **`Root`**: The central **run-time registry** and plugin manager for the framework, implemented as a singleton. It is responsible for discovering, loading, and managing all available plugins (`Plugin` objects). It acts as the main service locator for the application.
 
-*   **`Plugin`**: A plugin is a self-contained unit of functionality, consisting of a shared library (e.g., a `.dll` on Windows) and a `Plugin.xml` manifest file. The `Plugin` class parses this manifest and manages the lifecycle of the shared library. It is responsible for calling the factory function inside the library to create service instances.
+*   **`Plugin`**: A plugin is a self-contained unit of functionality, consisting of a shared library (e.g., a `.dll` on Windows) and a `Plugin.xml` manifest file. The `Plugin` class is responsible for parsing this manifest using `boost::property_tree::xml_parser` to extract plugin configuration, registered services, and declared dependencies. It then manages the lifecycle of the shared library and calls the factory function inside the library to create service instances.
 
 *   **`Service`**: The base class for any functionality exposed by a plugin. Plugins can offer multiple services, and a service is the primary way consumers interact with a plugin's features.
 
@@ -61,6 +61,72 @@ classDiagram
 *   **`Library`**: A utility class that abstracts the platform-specific details of loading and interacting with shared libraries. Each `Plugin` instance manages a `Library` instance to load its code at runtime.
 
 *   **`Registry` (in `Registry.h`)**: This is a **compile-time, template-based helper** used *within* a plugin to create a factory for its services. By chaining services in the template parameters (e.g., `Core::Registry<ServiceA, Core::Registry<ServiceB>>`), it generates a static `getService` method. The `DECLARE_SERVICE_REGISTRY` macro then exports this method as a C-style function, which the `Plugin` class calls to instantiate services.
+
+
+## Manifest
+
+The `Plugin.xml` file is a crucial part of each plugin, serving as its manifest. It defines the plugin's identity, the services it offers, and any other plugins it depends on. The `Core::Plugin` class parses this XML file at runtime using `boost::property_tree` to discover and manage plugins.
+
+### Structure
+
+A `Plugin.xml` file has the following basic structure:
+
+```xml
+<Plugin name="[PluginName]">
+  <Services>
+    <Service name="[ServiceName]" extends="[BaseService]" type="[concrete|abstract]"/>
+    <!-- More services -->
+  </Services>
+  <Dependencies>
+    <Dependency plugin="[DependencyPluginName]"/>
+    <!-- More dependencies -->
+  </Dependencies>
+</Plugin>
+```
+
+*   **`<Plugin name="...">`**: The root element that defines the unique name of the plugin. This name is used by `Core::Root` to identify and retrieve plugins.
+*   **`<Services>`**: An optional section that lists all the services provided by this plugin.
+    *   **`<Service name="..." extends="..." type="...">`**: Defines a single service.
+        *   `name`: The name of the service within this plugin.
+        *   `extends`: (Optional) The fully qualified name of the base service it extends (e.g., `Core::Application` or `Plugins::DummyApplication::Service`). This is crucial for the framework to build an extension map.
+        *   `type`: (Optional) Specifies whether the service is `concrete` (instantiable, default) or `abstract` (cannot be directly instantiated, serves as an interface).
+*   **`<Dependencies>`**: An optional section that lists other plugins this plugin relies on.
+    *   **`<Dependency plugin="...">`**: Declares a dependency on another plugin.
+        *   `plugin`: The unique name of the plugin this one depends on. The framework ensures that all dependencies are loaded before the dependent plugin.
+
+### Examples
+
+Let's look at the `Plugin.xml` files from the dummy plugins:
+
+#### [`Plugins::DummyApplication`](../../Sources/Plugins/DummyApplication/Plugin.xml)
+
+```xml
+<Plugin name="Plugins::DummyApplication">
+  <Services>
+    <Service name="Application" extends="Core::Application"/>
+    <Service name="Service" type="abstract"/>
+  </Services>
+</Plugin>
+```
+This manifest declares a plugin named `Plugins::DummyApplication`. It provides two services:
+*   An `Application` service which extends `Core::Application`. This indicates it's an executable entry point.
+*   An `abstract` `Service` which serves as an interface for other plugins to implement.
+
+#### [`Plugins::DummyService`](../../Sources/Plugins/DummyService/Plugin.xml)
+
+```xml
+<Plugin name="Plugins::DummyService">
+  <Services>
+    <Service name="Service" extends="Plugins::DummyApplication::Service"/>
+  </Services>
+  <Dependencies>
+    <Dependency plugin="Plugins::DummyApplication"/>
+  </Dependencies>
+</Plugin>
+```
+This manifest declares `Plugins::DummyService`. It provides:
+*   A concrete `Service` that extends the abstract `Plugins::DummyApplication::Service`, providing a concrete implementation for it.
+*   It also declares a `Dependency` on `Plugins::DummyApplication`, ensuring that the `DummyApplication` plugin is loaded before `DummyService`.
 
 ## Workflow
 
