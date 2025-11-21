@@ -10,12 +10,15 @@ project(lightweight-cpp-plugin-framework
 
 set(CMAKE_DEBUG_POSTFIX "_d")
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
 # Boost
 
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 
-find_package(Boost COMPONENTS system filesystem property_tree REQUIRED)
+find_package(Boost COMPONENTS property_tree REQUIRED)
 
 include_directories(${Boost_INCLUDE_DIRS})
 
@@ -44,8 +47,6 @@ add_library(Core SHARED
 	Sources/Core/Factory.h
 	Sources/Core/Factory.cpp
 	Sources/Core/ExtensionMap.bat)
-	
-target_link_libraries(Core ${Boost_FILESYSTEM_LIBRARY})
 
 # Framework Main Executable
 

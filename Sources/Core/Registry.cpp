@@ -1,9 +1,8 @@
 #include "Registry.h"
 #include <iostream>
-#include <boost/filesystem.hpp>
+#include <filesystem>
 
 using namespace Core;
-using namespace boost;
 
 Registry* Registry::mInstance = 0;
 
@@ -22,10 +21,10 @@ Registry::Registry()
 
 void Registry::addPluginFolder(const std::string &path)
 {
-	if (filesystem::is_directory(path))
+	if (std::filesystem::is_directory(path))
 	{
-		for (filesystem::directory_iterator iter(path); iter != filesystem::directory_iterator(); iter++)
-			if (filesystem::exists(iter->path() / "Plugin.xml"))
+		for (std::filesystem::directory_iterator iter(path); iter != std::filesystem::directory_iterator(); iter++)
+			if (std::filesystem::exists(iter->path() / "Plugin.xml"))
 				addPlugin(iter->path().string());
 	}
 	else
