@@ -4,6 +4,17 @@
 
 This framework provides a simple yet powerful architecture for building modular C++ applications. It allows developers to extend an application's functionality by simply adding new plugins to a designated folder, without needing to recompile the core application.
 
+### Dependencies
+
+Dependency and build management:
+
+*   **CMake**: The cross-platform build system used to configure and generate the project builds.
+*   **vcpkg**: A C++ package manager used to install and manage library dependencies. The required libraries are listed in the `vcpkg.json` file in the root directory.
+
+Memory management, filesystem interaction, XML parsing:
+
+*   **Boost**: A collection of high-quality, peer-reviewed C++ libraries. This framework uses Boost for various utilities, including smart pointers (`boost::shared_ptr`).
+
 ### Core Components
 
 ```mermaid
