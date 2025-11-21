@@ -11,12 +11,18 @@ classDiagram
     namespace Core {
         class Root {
             <<Singleton>>
+            getInstance() $
+            addPluginFolder()
+            getPlugin()
         }
 
         class Plugin {
+            getService()
         }
 
         class Library {
+            load()
+            unload()
         }
 
         class Service {
@@ -25,6 +31,7 @@ classDiagram
         
         class Application {
             <<Abstract>>
+            run()
         }
     }
 
