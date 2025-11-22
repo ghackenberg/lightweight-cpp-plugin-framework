@@ -1,6 +1,6 @@
 # Tutorial: Develop Your First Plugin
 
-This tutorial will guide you through creating a new plugin from scratch. We will build a `MultiplierService` plugin that, like the existing `DummyService`, provides an implementation for the abstract service interface defined in the `DummyApplication` plugin.
+This tutorial will guide you through creating a new plugin from scratch. We will build a `MultiplierService` plugin that, like the existing `DummyService`, provides an implementation for the abstract service interface defined in the `DummyApplicationCli` plugin.
 
 Instead of adding numbers, our new plugin will multiply them.
 
@@ -43,8 +43,8 @@ add_library(Plugins_MultiplierService SHARED
 # Link against the core framework
 target_link_libraries(Plugins_MultiplierService Core)
 
-# Link against the DummyApplication plugin, since we use its service interface
-target_link_libraries(Plugins_MultiplierService Plugins_DummyApplication)
+# Link against the DummyApplicationCli plugin, since we use its service interface
+target_link_libraries(Plugins_MultiplierService Plugins_DummyApplicationCli)
 
 # Copy the manifest file to the build output directory
 configure_file(Plugin.xml Plugin.xml)
@@ -62,11 +62,11 @@ Copy the following into `Sources/Plugins/MultiplierService/Plugin.xml`:
     <Service name="Service" extends="Plugins::DummyApplication::Service"/>
   </Services>
   <Dependencies>
-    <Dependency plugin="Plugins::DummyApplication"/>
+    <Dependency plugin="Plugins::DummyApplicationCli"/>
   </Dependencies>
 </Plugin>
 ```
-This defines a plugin named `Plugins::MultiplierService` that provides one `Service`. The `extends` attribute tells the framework that our service is a concrete implementation of the abstract service from `Plugins::DummyApplication`. We also declare a dependency on that plugin.
+This defines a plugin named `Plugins::MultiplierService` that provides one `Service`. The `extends` attribute tells the framework that our service is a concrete implementation of the abstract service from `Plugins::DummyApplication::Service`. We also declare a dependency on that plugin.
 
 ## Step 4: Add Boilerplate Code (`Build.h`)
 
@@ -158,7 +158,7 @@ Open the file `Sources/Plugins/CMakeLists.txt` and add a new line to include the
 
 ```cmake
 # ... existing add_subdirectory calls
-add_subdirectory(DummyApplication)
+add_subdirectory(DummyApplicationCli)
 add_subdirectory(DummyService)
 
 # Add this line:

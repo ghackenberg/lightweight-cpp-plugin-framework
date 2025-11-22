@@ -88,7 +88,7 @@ A `Plugin.xml` file has the following basic structure:
 *   **`<Services>`**: An optional section that lists all the services provided by this plugin.
     *   **`<Service name="..." extends="..." type="...">`**: Defines a single service.
         *   `name`: The name of the service within this plugin.
-        *   `extends`: (Optional) The fully qualified name of the base service it extends (e.g., `Core::Application` or `Plugins::DummyApplication::Service`). This is crucial for the framework to build an extension map.
+        *   `extends`: (Optional) The fully qualified name of the base service it extends (e.g., `Core::Application` or `Plugins::DummyApplicationCli::Service`). This is crucial for the framework to build an extension map.
         *   `type`: (Optional) Specifies whether the service is `concrete` (instantiable, default) or `abstract` (cannot be directly instantiated, serves as an interface).
 *   **`<Dependencies>`**: An optional section that lists other plugins this plugin relies on.
     *   **`<Dependency plugin="...">`**: Declares a dependency on another plugin.
@@ -98,17 +98,17 @@ A `Plugin.xml` file has the following basic structure:
 
 Let's look at the `Plugin.xml` files from the dummy plugins:
 
-#### [`Plugins::DummyApplication`](../../Sources/Plugins/DummyApplication/Plugin.xml)
+#### [`Plugins::DummyApplicationCli`](../../Sources/Plugins/DummyApplicationCli/Plugin.xml)
 
 ```xml
-<Plugin name="Plugins::DummyApplication">
+<Plugin name="Plugins::DummyApplicationCli">
   <Services>
     <Service name="Application" extends="Core::Application"/>
     <Service name="Service" type="abstract"/>
   </Services>
 </Plugin>
 ```
-This manifest declares a plugin named `Plugins::DummyApplication`. It provides two services:
+This manifest declares a plugin named `Plugins::DummyApplicationCli`. It provides two services:
 *   An `Application` service which extends `Core::Application`. This indicates it's an executable entry point.
 *   An `abstract` `Service` which serves as an interface for other plugins to implement.
 
@@ -120,13 +120,13 @@ This manifest declares a plugin named `Plugins::DummyApplication`. It provides t
     <Service name="Service" extends="Plugins::DummyApplication::Service"/>
   </Services>
   <Dependencies>
-    <Dependency plugin="Plugins::DummyApplication"/>
+    <Dependency plugin="Plugins::DummyApplicationCli"/>
   </Dependencies>
 </Plugin>
 ```
 This manifest declares `Plugins::DummyService`. It provides:
 *   A concrete `Service` that extends the abstract `Plugins::DummyApplication::Service`, providing a concrete implementation for it.
-*   It also declares a `Dependency` on `Plugins::DummyApplication`, ensuring that the `DummyApplication` plugin is loaded before `DummyService`.
+*   It also declares a `Dependency` on `Plugins::DummyApplicationCli`, ensuring that the `DummyApplicationCli` plugin is loaded before `DummyService`.
 
 ## Workflow
 

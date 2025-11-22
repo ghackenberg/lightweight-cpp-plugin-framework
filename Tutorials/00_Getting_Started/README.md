@@ -59,7 +59,7 @@ The final step is to run the application's entry point.
 
 Now, press **F5** or click the green "Run" button with `Main.exe` selected in the toolbar.
 
-A console window will appear, and you should see the following output from the `DummyApplication` plugin, which confirms that the core application successfully loaded a plugin and its dependencies:
+A console window will appear, and you should see the following output from the `DummyApplicationCli` plugin, which confirms that the core application successfully loaded a plugin and its dependencies:
 
 ```
 Dienstimplementierung Plugins::DummyService::Service
