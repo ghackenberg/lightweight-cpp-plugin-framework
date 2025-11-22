@@ -5,6 +5,7 @@
   "homepage": "https://github.com/ghackenberg/lightweight-cpp-plugin-framework",
   "license": "MIT",
   "dependencies": [
-    "boost-property-tree"
+    "boost-property-tree",
+    "sdl3"
   ]
 }
