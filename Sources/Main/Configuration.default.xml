@@ -2,5 +2,5 @@
   <PluginFolders>
     <Folder path="./Plugins"/>
   </PluginFolders>
-  <Application plugin="Plugins::DummyApplication" service="Application"/>
+  <Application plugin="Plugins::DummyApplicationCli" service="Application"/>
 </Configuration>
