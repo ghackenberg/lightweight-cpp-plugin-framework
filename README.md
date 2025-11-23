@@ -8,16 +8,6 @@ The architecture's power is rooted in the separation of interfaces and implement
 
 This approach is ideal for a wide range of software, from desktop tools like image editors and digital audio workstations to game engines that require custom behaviors. Looking forward, the design is well-suited for modern deployment scenarios like **WebAssembly (WASM)**. An application compiled to WASM could dynamically load plugins as separate `.wasm` modules, enabling high-performance, extensible web applications where features are loaded on demand.
 
-## Images
-
-Project logo, plugin registry, plugin lifecycle, and plugin services:
-
-<img src="./Images/Logo.jpg" width="25%"/><img src="./Images/Registry.jpg" width="25%"/><img src="./Images/Lifecycle.jpg" width="25%"/><img src="./Images/Services.jpg" width="25%"/>
-
-Project dependencies, cross-platform, WebAssembly, applications:
-
-<img src="./Images/Dependencies.jpg" width="25%"/><img src="./Images/Cross-Platform.jpg" width="25%"/><img src="./Images/WebAssembly.jpg" width="25%"/><img src="./Images/Applications.jpg" width="25%"/>
-
 ## Dependencies
 
 ```mermaid
@@ -61,6 +51,16 @@ This project includes step-by-step tutorials to help you get started with the fr
 *   **[01 - Develop Your First Plugin](./Tutorials/01_Develop_Your_First_Plugin/README.md)**: Learn how to create a new plugin from scratch. This tutorial demonstrates how to build a `MultiplierService` that implements an existing abstract service, add it to the root `CMakeLists.txt`, create its manifest file, and integrate it into the main application.
 
 *   **[02 - Understand The Core](./Tutorials/02_Understand_The_Core/README.md)**: Dive into the fundamental components of the framework, understanding the roles of the `Registry`, `Plugin`, `Service`, and `Application` classes and how they interact to provide a robust and extensible architecture.
+
+## Images
+
+Project logo, plugin registry, plugin lifecycle, and plugin services:
+
+<img src="./Images/Logo.jpg" width="25%"/><img src="./Images/Registry.jpg" width="25%"/><img src="./Images/Lifecycle.jpg" width="25%"/><img src="./Images/Services.jpg" width="25%"/>
+
+Project dependencies, cross-platform, WebAssembly, applications:
+
+<img src="./Images/Dependencies.jpg" width="25%"/><img src="./Images/Cross-Platform.jpg" width="25%"/><img src="./Images/WebAssembly.jpg" width="25%"/><img src="./Images/Applications.jpg" width="25%"/>
 
 ## Contributing
 
