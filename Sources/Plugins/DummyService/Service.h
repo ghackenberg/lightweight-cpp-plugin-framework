@@ -10,7 +10,7 @@ namespace Plugins
 	{
 
 		/// Sample service.
-		class PLUGINS_DUMMYSERVICE_API Service : public Plugins::DummyApplicationCli::Service
+		class PLUGIN_DUMMY_SERVICE_API Service : public Plugins::DummyApplicationCli::Service
 		{
 		public:
 

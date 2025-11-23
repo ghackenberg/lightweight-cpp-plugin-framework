@@ -10,7 +10,7 @@ namespace Plugins
 	{
 
 		/// Sample application service.
-		class PLUGINS_DUMMYAPPLICATIONGUI_API Application : public Core::Application
+		class PLUGIN_DUMMY_APPLICATION_GUI_API Application : public Core::Application
 		{
 		public:
 
