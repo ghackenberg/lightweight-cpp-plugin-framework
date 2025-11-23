@@ -17,7 +17,7 @@ Plugin::Plugin(const std::string &path)
 {
 	// read the config file
 	property_tree::ptree conf;
-	property_tree::read_xml(path + "/Plugin.xml", conf);
+	property_tree::read_xml(path + ".xml", conf);
 
 	// initialize the members
 	mName = conf.get<std::string>("Plugin.<xmlattr>.name");
@@ -57,15 +57,7 @@ Plugin::Plugin(const std::string &path)
 	}
 
 	// Generate the DLL name from the plugin name
-	std::string dllName(mName);
-	std::string::size_type pos;
-
-	while ((pos = dllName.find_first_of("::")) != std::string::npos)
-	{
-		dllName.replace(pos, 2, "_");
-	}
-
-	mLibrary.reset(new Library(path + "/" + dllName));
+	mLibrary.reset(new Library(path));
 }
 
 const Plugin::ServiceDeclaration &Plugin::getServiceDeclaration(const std::string &name) const

@@ -9,8 +9,9 @@ Registry* Registry::mInstance = nullptr;
 Registry* Registry::getInstance()
 {
 	if (mInstance == nullptr)
+	{
 		mInstance = new Registry();
-
+	}
 	return mInstance;
 }
 
@@ -19,13 +20,25 @@ Registry::Registry()
 
 }
 
-void Registry::addPluginFolder(const std::string &path)
+void Registry::addPluginFolder(const std::string& path)
 {
 	if (std::filesystem::is_directory(path))
 	{
 		for (std::filesystem::directory_iterator iter(path); iter != std::filesystem::directory_iterator(); iter++)
-			if (std::filesystem::exists(iter->path() / "Plugin.xml"))
-				addPlugin(iter->path().string());
+		{
+			if (iter->is_regular_file())
+			{
+				std::filesystem::path path(iter->path());
+
+				const std::filesystem::path filename(path.filename());
+				const std::filesystem::path extension(path.extension());
+
+				if (filename.string().starts_with("Plugin") && extension == ".xml")
+				{
+					addPlugin(path.replace_extension("").string());
+				}
+			}
+		}
 	}
 	else
 	{
@@ -33,7 +46,7 @@ void Registry::addPluginFolder(const std::string &path)
 	}
 }
 
-PluginPtr Registry::getPlugin(const std::string &name) const
+PluginPtr Registry::getPlugin(const std::string& name) const
 {
 	PluginMap::const_iterator iter = mPluginMap.find(name);
 
@@ -43,7 +56,7 @@ PluginPtr Registry::getPlugin(const std::string &name) const
 		throw "Plugin does not exist!";
 }
 
-Registry::ServiceList Registry::getImplementations(const std::string &service) const
+Registry::ServiceList Registry::getImplementations(const std::string& service) const
 {
 	ServiceList result;
 
@@ -77,7 +90,7 @@ Registry::ServiceList Registry::getImplementations(const std::string &service) c
 
 #ifndef _NDEBUG
 
-void Registry::dumpPlugins(std::ostream &out) const
+void Registry::dumpPlugins(std::ostream& out) const
 {
 	out << "digraph G {" << std::endl;
 	out << "\tcompound = true;" << std::endl;
@@ -113,13 +126,22 @@ void Registry::dumpPlugins(std::ostream &out) const
 
 #endif
 
-void Registry::addPlugin(const std::string &path)
+void Registry::addPlugin(const std::string& path)
 {
-	PluginPtr plugin(new Plugin(path));
+	try
+	{
+		PluginPtr plugin(new Plugin(path));
 
-	mPluginMap[plugin->getName()] = plugin;
+		std::cout << "Plugin " << path << " added" << std::endl;
 
-	for (Plugin::ServiceMap::const_iterator iter = plugin->getServiceMap().begin(); iter != plugin->getServiceMap().end(); iter++)
-		if (iter->second.extends != "")
-			mExtensionMap[iter->second.extends].push_back(ServiceLocator(plugin->getName(), iter->second.name));
+		mPluginMap[plugin->getName()] = plugin;
+
+		for (Plugin::ServiceMap::const_iterator iter = plugin->getServiceMap().begin(); iter != plugin->getServiceMap().end(); iter++)
+			if (iter->second.extends != "")
+				mExtensionMap[iter->second.extends].push_back(ServiceLocator(plugin->getName(), iter->second.name));
+	}
+	catch (...)
+	{
+		std::cerr << "Plugin " << path << " could not be added!";
+	}
 }
