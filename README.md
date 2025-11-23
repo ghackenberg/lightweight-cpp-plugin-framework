@@ -10,7 +10,12 @@ This approach is ideal for a wide range of software, from desktop tools like ima
 
 ## Images
 
+Project logo, plugin registry, plugin lifecycle, and plugin services:
+
 <img src="./Images/Logo.jpg" width="25%"/><img src="./Images/Registry.jpg" width="25%"/><img src="./Images/Lifecycle.jpg" width="25%"/><img src="./Images/Services.jpg" width="25%"/>
+
+Project dependencies, cross-platform, WebAssembly, applications:
+
 <img src="./Images/Dependencies.jpg" width="25%"/><img src="./Images/Cross-Platform.jpg" width="25%"/><img src="./Images/WebAssembly.jpg" width="25%"/><img src="./Images/Applications.jpg" width="25%"/>
 
 ## Dependencies
