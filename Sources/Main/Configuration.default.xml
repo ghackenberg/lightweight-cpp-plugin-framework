@@ -1,6 +1,3 @@
 <Configuration>
-  <PluginFolders>
-    <Folder path="./"/>
-  </PluginFolders>
   <Application plugin="Plugins::DummyApplicationCli" service="Application"/>
 </Configuration>

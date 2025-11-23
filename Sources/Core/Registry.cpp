@@ -132,8 +132,6 @@ void Registry::addPlugin(const std::string& path)
 	{
 		PluginPtr plugin(new Plugin(path));
 
-		std::cout << "Plugin " << path << " added" << std::endl;
-
 		mPluginMap[plugin->getName()] = plugin;
 
 		for (Plugin::ServiceMap::const_iterator iter = plugin->getServiceMap().begin(); iter != plugin->getServiceMap().end(); iter++)

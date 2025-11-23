@@ -3,31 +3,19 @@
 #include <Core/Application.h>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
-#include <iostream>
+#include <filesystem>
 #include <fstream>
-
-using namespace Core;
-using namespace boost;
 
 /// Load the configuration file and execute the specified application.
 int main(int argc, char **argv)
 {
 	try
 	{
-		Registry* registry = Registry::getInstance();
+		// Get registry instance
+		Core::Registry* registry = Core::Registry::getInstance();
 
-		// Read the configuration
-		property_tree::ptree tree;
-		property_tree::read_xml("Configuration.xml", tree);
-
-		// Add the plugin folders
-		property_tree::ptree folders(tree.get_child("Configuration.PluginFolders"));
-
-		for (property_tree::ptree::iterator iter = folders.begin(); iter != folders.end(); iter++)
-		{
-			std::string path(iter->second.get<std::string>("<xmlattr>.path"));
-			registry->addPluginFolder(path);
-		}
+		// Add plugin folder
+		registry->addPluginFolder(std::filesystem::path(argv[0]).parent_path().string());
 
 #ifndef _NDEBUG
 		std::ofstream out;
@@ -36,15 +24,20 @@ int main(int argc, char **argv)
 		out.close();
 #endif
 
-		// Start the application
+		// Read configuration file
+		boost::property_tree::ptree tree;
+		boost::property_tree::read_xml("Configuration.xml", tree);
+
+		// Get plugin and application service name
 		std::string pluginName(tree.get<std::string>("Configuration.Application.<xmlattr>.plugin"));
 		std::string serviceName(tree.get<std::string>("Configuration.Application.<xmlattr>.service"));
 
-		PluginPtr plugin = registry->getPlugin(pluginName);
-		ServicePtr service = plugin->getService(serviceName);
-		ApplicationPtr application = std::dynamic_pointer_cast<Application>(service);
+		// Get plugin and application service instance
+		Core::PluginPtr plugin = registry->getPlugin(pluginName);
+		Core::ApplicationPtr service = plugin->getService<Core::Application>(serviceName);
 
-		return application->run(argc, argv);
+		// Run application service
+		return service->run(argc, argv);
 	}
 	catch (...)
 	{
