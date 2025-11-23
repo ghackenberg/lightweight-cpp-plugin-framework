@@ -18,7 +18,6 @@ Inside `Sources/Plugins/MultiplierService/`, create the following empty files. W
 
 ```
 MultiplierService/
-├── CMakeLists.txt
 ├── Plugin.xml
 ├── Build.h
 ├── Service.h
@@ -26,63 +25,64 @@ MultiplierService/
 └── main.cpp
 ```
 
-## Step 2: Configure the Build System (`CMakeLists.txt`)
+## Step 2: Integrate into the Main Build (`CMakeLists.txt`)
 
-This file tells CMake how to build our plugin as a shared library (`.dll`) and links it against the necessary dependencies.
+Instead of creating a new `CMakeLists.txt` for our plugin, we will add its build rules directly to the root `CMakeLists.txt` file. This centralizes the project's build configuration.
 
-Copy the following code into `Sources/Plugins/MultiplierService/CMakeLists.txt`:
+Open the main `CMakeLists.txt` file located in the project's root directory. Scroll down to the `# Plugins` section and add the following CMake code, for instance, after the `PluginDummyService` block:
 
 ```cmake
-# Define the shared library target for our plugin
-add_library(Plugins_MultiplierService SHARED
-	Build.h
-	main.cpp
-	Service.h
-	Service.cpp)
+## MultiplierService
 
-# Link against the core framework
-target_link_libraries(Plugins_MultiplierService Core)
+add_library(PluginMultiplierService SHARED
+	"Sources/Plugins/MultiplierService/Build.h"
+	"Sources/Plugins/MultiplierService/main.cpp"
+	"Sources/Plugins/MultiplierService/Service.h"
+	"Sources/Plugins/MultiplierService/Service.cpp")
 
-# Link against the DummyApplicationCli plugin, since we use its service interface
-target_link_libraries(Plugins_MultiplierService Plugins_DummyApplicationCli)
+target_link_libraries(PluginMultiplierService Core)
+target_link_libraries(PluginMultiplierService PluginDummyApplicationCli)
 
-# Copy the manifest file to the build output directory
-configure_file(Plugin.xml Plugin.xml)
+configure_file("Sources/Plugins/MultiplierService/Plugin.xml" "PluginMultiplierService.xml")
 ```
+
+This code accomplishes the following:
+*   `add_library(PluginMultiplierService ...)`: Defines a shared library target for our plugin, named according to the `Plugin<Name>` convention.
+*   `target_link_libraries(...)`: Links our new plugin against the `Core` framework and `PluginDummyApplicationCli`, since we are implementing its service interface.
+*   `configure_file(...)`: Copies the plugin's manifest from its source directory to the build output directory, renaming it to `PluginMultiplierService.xml` to match the library name.
 
 ## Step 3: Create the Plugin Manifest (`Plugin.xml`)
 
-The manifest file describes our plugin to the framework.
+The manifest file describes our plugin to the framework, including the services it provides and the dependencies it requires.
 
 Copy the following into `Sources/Plugins/MultiplierService/Plugin.xml`:
 
 ```xml
 <Plugin name="Plugins::MultiplierService">
   <Services>
-    <Service name="Service" extends="Plugins::DummyApplication::Service"/>
+    <Service name="Service" extends="Plugins::DummyApplicationCli::Service"/>
   </Services>
   <Dependencies>
     <Dependency plugin="Plugins::DummyApplicationCli"/>
   </Dependencies>
 </Plugin>
 ```
-This defines a plugin named `Plugins::MultiplierService` that provides one `Service`. The `extends` attribute tells the framework that our service is a concrete implementation of the abstract service from `Plugins::DummyApplication::Service`. We also declare a dependency on that plugin.
+This defines a plugin named `Plugins::MultiplierService`. The `extends` attribute points to `Plugins::DummyApplicationCli::Service`, telling the framework that our service is a concrete implementation of the abstract `Service` interface defined in the `DummyApplicationCli` plugin.
 
 ## Step 4: Add Boilerplate Code (`Build.h`)
 
-These files help with exporting symbols.
+This header file is used to manage symbol visibility (`dllexport`/`dllimport`) for the shared library.
 
 **`Build.h`:**
 ```cpp
-#ifndef PLUGINS_MULTIPLIERSERVICE_BUILD_H
-#define PLUGINS_MULTIPLIERSERVICE_BUILD_H
+#pargma once
 
 #include <Core/Platform.h>
 
 #ifdef Plugins_MultiplierService_EXPORTS
-#	define PLUGINS_MULTIPLIERSERVICE_API CORE_EXPORT
+#	define PLUGIN_MULTIPLIER_SERVICE_API CORE_EXPORT
 #else
-#	define PLUGINS_MULTIPLIERSERVICE_API CORE_IMPORT
+#	define PLUGIN_MULTIPLIER_SERVICE_API CORE_IMPORT
 #endif
 
 #endif
@@ -90,23 +90,22 @@ These files help with exporting symbols.
 
 ## Step 5: Define and Implement the Service
 
-Now we'll write the core logic of our plugin.
+Now we'll write the core logic of our plugin. Our `MultiplierService` will provide an implementation for the `calculate` method defined in the `DummyApplicationCli`'s abstract service.
 
 **`Service.h` (The Header):**
-This file defines our `Service` class. Notice it inherits from `Plugins::DummyApplication::Service`.
+This file defines our `Service` class, which inherits from `Plugins::DummyApplicationCli::Service`.
 ```cpp
-#ifndef PLUGINS_MULTIPLIERSERVICE_SERVICE_H
-#define PLUGINS_MULTIPLIERSERVICE_SERVICE_H
+#pargma once
 
 #include "Build.h"
-#include <Plugins/DummyApplication/Service.h> // The interface we are implementing
+#include <Plugins/DummyApplicationCli/Service.h> // The interface we are implementing
 #include <boost/shared_ptr.hpp>
 
 namespace Plugins
 {
 	namespace MultiplierService
 	{
-		class PLUGINS_MULTIPLIERSERVICE_API Service : public Plugins::DummyApplication::Service
+		class PLUGIN_MULTIPLIER_SERVICE_API Service : public Plugins::DummyApplicationCli::Service
 		{
 		public:
 			// The implementation of the abstract 'calculate' method
@@ -121,7 +120,7 @@ namespace Plugins
 ```
 
 **`Service.cpp` (The Implementation):**
-Here we provide the logic for the `calculate` method: multiplication.
+Here, we provide our unique logic for the `calculate` method: multiplication.
 ```cpp
 #include "Service.h"
 
@@ -136,7 +135,7 @@ int Service::calculate(int a, int b)
 
 ## Step 6: Register the Service (`main.cpp`)
 
-This final piece of code creates the factory function that allows the framework to create instances of our service class.
+This final piece of code creates and registers a factory function with the framework. The `Plugin` class will use this factory to create instances of our `Service` class at runtime.
 
 **`main.cpp`:**
 ```cpp
@@ -148,21 +147,6 @@ using namespace Plugins::MultiplierService;
 // Register our Service class with the framework
 typedef Core::Factory<Service> Factory;
 DECLARE_SERVICE_FACTORY(Factory)
-```
-
-## Step 7: Add the Plugin to the Main Build
-
-The last step is to tell the main project's build system that our new plugin exists.
-
-Open the file `Sources/Plugins/CMakeLists.txt` and add a new line to include the `MultiplierService` directory:
-
-```cmake
-# ... existing add_subdirectory calls
-add_subdirectory(DummyApplicationCli)
-add_subdirectory(DummyService)
-
-# Add this line:
-add_subdirectory(MultiplierService)
 ```
 
 ## Step 8: Build and Run!

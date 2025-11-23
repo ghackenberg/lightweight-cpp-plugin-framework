@@ -52,7 +52,7 @@ classDiagram
 
 *   **`Registry`**: The central **run-time registry** and plugin manager for the framework, implemented as a singleton. It is responsible for discovering, loading, and managing all available plugins (`Plugin` objects). It acts as the main service locator for the application.
 
-*   **`Plugin`**: A plugin is a self-contained unit of functionality, consisting of a shared library (e.g., a `.dll` on Windows) and a `Plugin.xml` manifest file. The `Plugin` class is responsible for parsing this manifest using `boost::property_tree::xml_parser` to extract plugin configuration, registered services, and declared dependencies. It then manages the lifecycle of the shared library and calls the factory function inside the library to create service instances.
+*   **`Plugin`**: A plugin is a self-contained unit of functionality. At runtime, it consists of a shared library (e.g., `PluginMyPlugin.dll` on Windows) and a manifest file (e.g., `PluginMyPlugin.xml`), both located in the main executable's directory. The `Plugin` class is responsible for parsing the manifest to extract its configuration, registered services, and declared dependencies. It then manages the lifecycle of the corresponding shared library and calls a factory function inside it to create service instances.
 
 *   **`Service`**: The base class for any functionality exposed by a plugin. Plugins can offer multiple services, and a service is the primary way consumers interact with a plugin's features.
 
@@ -117,7 +117,7 @@ This manifest declares a plugin named `Plugins::DummyApplicationCli`. It provide
 ```xml
 <Plugin name="Plugins::DummyService">
   <Services>
-    <Service name="Service" extends="Plugins::DummyApplication::Service"/>
+    <Service name="Service" extends="Plugins::DummyApplicationCli::Service"/>
   </Services>
   <Dependencies>
     <Dependency plugin="Plugins::DummyApplicationCli"/>
@@ -134,13 +134,13 @@ Here is the detailed sequence of events when an application using this framework
 
 1.  **Initialization**: The main executable initializes the framework by retrieving the `Registry` singleton instance.
 
-2.  **Plugin Discovery**: It calls `Registry::addPluginFolder()`, passing a path to a directory where plugins are stored.
+2.  **Plugin Discovery**: The main executable calls `Registry::addPluginFolder()` and provides the path to its own executable directory. This tells the framework to look for plugins in the same folder as the main application.
 
-3.  **Plugin Parsing**: The `Registry` scans the directory for subdirectories containing a `Plugin.xml` file. For each one it finds, it creates a `Plugin` instance, which parses the XML manifest to learn about the plugin's name, services, and dependencies.
+3.  **Plugin Parsing**: The `Registry` scans the specified directory for manifest files matching the pattern `Plugin*.xml`. For each manifest it finds, it creates a `Plugin` instance. The instance parses the XML to learn about the plugin's name, services, and dependencies, and determines the corresponding shared library name (e.g., `PluginMyPlugin.dll` for `PluginMyPlugin.xml`).
 
 4.  **Service Request**: The application queries the `Registry` for a specific plugin by name (e.g., `registry->getPlugin("Plugins::DummyService")`) and then requests a service from it (e.g., `plugin->getService("Service")`).
 
-5.  **Library Loading**: The first time a service is requested from a `Plugin`, the `Plugin` object ensures its dependencies are loaded. Then, it uses its internal `Library` instance to load the plugin's own shared library (`.dll` or `.so`) into memory.
+5.  **Library Loading**: The first time a service is requested from a `Plugin`, the `Plugin` object ensures its dependencies are loaded. Then, it uses its internal `Library` instance to load the plugin's own shared library (e.g., `PluginDummyService.dll`) into memory.
 
 6.  **Factory Function Lookup**: The `Plugin` class looks for an exported C-style function named `getService` inside the loaded library. This function is the factory that knows how to create all the services offered by this plugin.
 
