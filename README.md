@@ -10,16 +10,8 @@ This approach is ideal for a wide range of software, from desktop tools like ima
 
 ## Images
 
-| Image | Name | Description |
-|-|-|-|
-| ![](./Images/Logo.jpg) | Logo | The official logo of the Lightweight C++ Plugin Framework. |
-| ![](./Images/Dependencies.jpg) | Dependencies | A diagram showing the framework's core dependencies, such as Boost, CMake, and vcpkg. |
-| ![](./Images/Applications.jpg) | Applications | An illustration of how multiple, distinct applications can be composed from a common set of plugins. |
-| ![](./Images/Registry.jpg) | Registry | Shows the central `Registry` as a hub, managing connections between plugins and the core application. |
-| ![](./Images/Services.jpg) | Services | An abstract representation of a plugin providing a concrete service to fulfill another plugin's abstract interface. |
-| ![](./Images/Lifecycle.jpg) | Lifecycle | Visualizes the runtime lifecycle of a plugin, from discovery and loading to the registration of its services. |
-| ![](./Images/Cross-Platform.jpg) | Cross-Platform | Illustrates the cross-platform nature of the framework, with plugins running uniformly across different operating systems. |
-| ![](./Images/WebAssembly.jpg) | WebAssembly | Depicts the future-facing goal of WebAssembly deployment, with plugins loading dynamically in a web browser. |
+<img src="./Images/Logo.jpg" width="25%"/><img src="./Images/Registry.jpg" width="25%"/><img src="./Images/Lifecycle.jpg" width="25%"/><img src="./Images/Services.jpg" width="25%"/>
+<img src="./Images/Dependencies.jpg" width="25%"/><img src="./Images/Cross-Platform.jpg" width="25%"/><img src="./Images/WebAssembly.jpg" width="25%"/><img src="./Images/Applications.jpg" width="25%"/>
 
 ## Dependencies
 
