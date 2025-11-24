@@ -9,7 +9,7 @@ int Application::run(int argc, char **argv)
 {
 	Core::Registry *registry = Core::Registry::getInstance();
 
-	Core::Registry::ServiceList implementations = registry->getImplementations("Plugins::DummyApplicationCli::Service");
+	Core::Registry::ServiceList implementations = registry->getImplementations<Plugins::DummyApplicationCli::Service>();
 
 	for (Core::Registry::ServiceList::const_iterator iterator = implementations.begin(); iterator != implementations.end(); iterator++)
 	{

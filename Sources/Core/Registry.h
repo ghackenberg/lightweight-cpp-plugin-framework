@@ -43,6 +43,13 @@ namespace Core
 		PluginPtr getPlugin(const std::string &name) const;
 		/// Retrieve a list of implementations for a service.
 		ServiceList getImplementations(const std::string &service) const;
+		/// Retrieve a list of implementations for a service.
+		template <class ServiceType>
+		ServiceList getImplementations() const
+		{
+			const std::string name(typeid(ServiceType).name());
+			return getImplementations(name.substr(name.find(" ") + 1));
+		}
 
 #ifndef _NDEBUG
 		/// Dump the plugins in GraphViz format.
