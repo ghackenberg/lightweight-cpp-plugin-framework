@@ -1,4 +1,4 @@
-# Tutorial 03: Understand The Core
+# Tutorial 02: Understand The Core
 
 Welcome to the deep dive into the heart of the **lightweight-cpp-plugin-framework**. This tutorial will walk you through the core components, their responsibilities, and how they work together to create a flexible and extensible application.
 

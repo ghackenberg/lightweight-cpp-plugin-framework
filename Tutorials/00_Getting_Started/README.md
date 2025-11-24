@@ -1,4 +1,4 @@
-# Tutorial 01: Getting Started (on Windows with Visual Studio 2026)
+# Tutorial 00: Getting Started (on Windows with Visual Studio 2026)
 
 This tutorial will guide you through setting up, building, and running the Lightweight C++ Plugin Framework project on a Windows machine using Visual Studio 2026.
 

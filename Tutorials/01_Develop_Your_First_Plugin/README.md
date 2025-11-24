@@ -1,4 +1,4 @@
-# Tutorial 02: Develop Your First Plugin
+# Tutorial 01: Develop Your First Plugin
 
 This tutorial will guide you through creating a new plugin from scratch. We will build a `MultiplierService` plugin that, like the existing `DummyService`, provides an implementation for the abstract service interface defined in the `DummyApplicationCli` plugin.
 
