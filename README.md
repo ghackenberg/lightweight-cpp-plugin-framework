@@ -52,16 +52,6 @@ This project includes step-by-step tutorials to help you get started with the fr
 
 *   **[02 - Understand The Core](./Tutorials/02_Understand_The_Core/README.md)**: Dive into the fundamental components of the framework, understanding the roles of the `Registry`, `Plugin`, `Service`, and `Application` classes and how they interact to provide a robust and extensible architecture.
 
-## Images
-
-Project logo, plugin registry, plugin lifecycle, and plugin services:
-
-<img src="./Images/Logo.jpg" width="25%"/><img src="./Images/Registry.jpg" width="25%"/><img src="./Images/Lifecycle.jpg" width="25%"/><img src="./Images/Services.jpg" width="25%"/>
-
-Project dependencies, cross-platform, WebAssembly, applications:
-
-<img src="./Images/Dependencies.jpg" width="25%"/><img src="./Images/Cross-Platform.jpg" width="25%"/><img src="./Images/WebAssembly.jpg" width="25%"/><img src="./Images/Applications.jpg" width="25%"/>
-
 ## Contributing
 
 We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
