@@ -63,7 +63,11 @@ add_executable(Main
 
 target_link_libraries(Main Core)
 
-configure_file("Sources/Main/Configuration.xml" "Configuration.xml")
+if (EXISTS "Sources/Main/Configuration.xml")
+	configure_file("Sources/Main/Configuration.xml" "Configuration.xml")
+else()
+	configure_file("Sources/Main/Configuration.default.xml" "Configuration.xml")
+endif()
 
 # Plugins
 
